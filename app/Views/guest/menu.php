@@ -6,15 +6,25 @@
             <h2 class="section-title mb-1"><i class="fas fa-book-open me-2"></i> Daftar Menu Burjo</h2>
             <p class="text-muted mb-0">Pilih makanan atau minuman favorit Anda</p>
         </div>
-        <a href="<?= base_url('/cart') ?>" class="btn btn-burjo position-relative">
-            <i class="fas fa-shopping-cart me-2"></i> Keranjang
-            <?php $cartCount = count(session()->get('cart') ?? []); ?>
-            <?php if ($cartCount > 0): ?>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <?= $cartCount ?>
-                </span>
-            <?php endif; ?>
-        </a>
+        <div class="d-flex gap-2 align-items-center">
+            <?php // SOAL 3 — Tombol Export PDF ?>
+            <div class="dropdown">
+                <a href="<?= base_url('/menu/export-pdf') ?>" class="btn btn-outline-danger" title="Download PDF Semua Menu">
+                    <i class="fas fa-file-pdf me-1"></i> Export PDF
+                </a>
+            </div>
+
+            <?php // Tombol Keranjang ?>
+            <a href="<?= base_url('/cart') ?>" class="btn btn-burjo position-relative">
+                <i class="fas fa-shopping-cart me-2"></i> Keranjang
+                <?php $cartCount = $cart_count ?? count(session()->get('burjo_cart') ?? []); ?>
+                <?php if ($cartCount > 0): ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <?= $cartCount ?>
+                    </span>
+                <?php endif; ?>
+            </a>
+        </div>
     </div>
 
     <!-- Filter & Search -->
